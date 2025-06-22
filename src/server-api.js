@@ -3,7 +3,7 @@
 
 import { OpenAPIServer } from "@ivotoby/openapi-mcp-server";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { getBaseUrl, getServerAPIKey } from "./fp-utils";
+import { getBaseUrl, getServerAPIKey } from "./fp-utils.js";
 
 const OPEN_API_SPEC_URL =
   "https://fingerprintjs.github.io/fingerprint-pro-server-api-openapi/schemas/fingerprint-server-api.yaml";
