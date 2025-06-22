@@ -4,7 +4,7 @@ import { OpenAPIServer } from "@ivotoby/openapi-mcp-server";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 function getBaseUrl() {
-  const region = process.env.FINGERPRINT_SERVER_API_REGION;
+  const region = process.env.FINGERPRINT_REGION;
   if (region === "eu") {
     return "https://eu.api.fpjs.io";
   }
@@ -15,9 +15,9 @@ function getBaseUrl() {
 }
 
 function getServerAPIKey() {
-  const serverAPIKey = process.env.FINGERPRINT_SERVER_API_KEY;
+  const serverAPIKey = process.env.FINGERPRINT_SECRET_API_KEY;
   if (!serverAPIKey) {
-    throw new Error("FINGERPRINT_SERVER_API_KEY is not set");
+    throw new Error("FINGERPRINT_SECRET_API_KEY is not set");
   }
   return serverAPIKey;
 }
