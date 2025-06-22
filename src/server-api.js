@@ -26,7 +26,7 @@ function getServerAPIKey() {
  * Basic example of using mcp-openapi-server as a library
  * This creates a dedicated MCP server for a specific API
  */
-async function main(): Promise<void> {
+async function main() {
   try {
     // Configure your API server
     const config = {
@@ -40,8 +40,8 @@ async function main(): Promise<void> {
         "Auth-API-Key": getServerAPIKey(),
         "User-Agent": "Fingerprint Server API MCP Server",
       },
-      transportType: "stdio" as const,
-      toolsMode: "all" as const,
+      transportType: "stdio",
+      toolsMode: "all",
     };
 
     // Create and start the server

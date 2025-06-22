@@ -2,8 +2,13 @@
   "name": "fingerprint-mcp-server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "./src/server-api.js",
   "type": "module",
+  "bin": {
+    "fingerprint-mcp-server": "./src/server-api.js",
+    "server-api": "./src/server-api.js",
+    "management-api": "./src/management-api.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
