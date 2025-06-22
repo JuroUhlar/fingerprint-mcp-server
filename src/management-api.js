@@ -30,6 +30,7 @@ async function main() {
       specInputMethod: "url",
       headers: {
         "Authorization-API-Key": getManagementAPIKey(),
+        "X-API-Version": "2024-05-20",
         "User-Agent": "Fingerprint Management API MCP Server",
       },
       transportType: "stdio",
