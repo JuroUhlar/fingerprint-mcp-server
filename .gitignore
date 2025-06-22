@@ -1,0 +1,7 @@
+.vscode
+.cursor
+node_modules
+dist
+build
+cache
+.env
