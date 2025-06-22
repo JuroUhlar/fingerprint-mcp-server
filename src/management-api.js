@@ -4,26 +4,15 @@
 import { OpenAPIServer } from "@ivotoby/openapi-mcp-server";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-const OPEN_API_SPEC_URL =
-  "https://fingerprintjs.github.io/fingerprint-pro-server-api-openapi/schemas/fingerprint-server-api.yaml";
+const BASE_URL = "https://management-api.fpjs.io";
+const OPEN_API_SPEC_URL = "https://management-api.fpjs.io/docs-yaml";
 
-export function getBaseUrl() {
-  const region = process.env.FINGERPRINT_REGION;
-  if (region === "eu") {
-    return "https://eu.api.fpjs.io";
+function getManagementAPIKey() {
+  const managementAPIKey = process.env.FINGERPRINT_MANAGEMENT_API_KEY;
+  if (!managementAPIKey) {
+    throw new Error("FINGERPRINT_MANAGEMENT_API_KEY is not set");
   }
-  if (region === "ap") {
-    return "https://ap.api.fpjs.io";
-  }
-  return "https://api.fpjs.io";
-}
-
-export function getServerAPIKey() {
-  const serverAPIKey = process.env.FINGERPRINT_SECRET_API_KEY;
-  if (!serverAPIKey) {
-    throw new Error("FINGERPRINT_SECRET_API_KEY is not set");
-  }
-  return serverAPIKey;
+  return managementAPIKey;
 }
 
 /**
@@ -36,12 +25,12 @@ async function main() {
     const config = {
       name: "Fingerprint Server API MCP Server",
       version: "1.0.0",
-      apiBaseUrl: getBaseUrl(),
+      apiBaseUrl: BASE_URL,
       openApiSpec: OPEN_API_SPEC_URL,
       specInputMethod: "url",
       headers: {
-        "Auth-API-Key": getServerAPIKey(),
-        "User-Agent": "Fingerprint Server API MCP Server",
+        "Authorization-API-Key": getManagementAPIKey(),
+        "User-Agent": "Fingerprint Management API MCP Server",
       },
       transportType: "stdio",
       toolsMode: "all",
@@ -52,7 +41,7 @@ async function main() {
     const transport = new StdioServerTransport();
 
     await server.start(transport);
-    console.error("Fingerprint Server API MCP Server running on stdio");
+    console.error("Fingerprint Management API MCP Server running on stdio");
   } catch (error) {
     console.error("Failed to start server:", error);
     process.exit(1);
