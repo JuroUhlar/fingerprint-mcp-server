@@ -1,26 +1,12 @@
 #!/usr/bin/env node
+// @ts-check
 
 import { OpenAPIServer } from "@ivotoby/openapi-mcp-server";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { getBaseUrl, getServerAPIKey } from "./fp-utils";
 
-function getBaseUrl() {
-  const region = process.env.FINGERPRINT_REGION;
-  if (region === "eu") {
-    return "https://eu.api.fpjs.io";
-  }
-  if (region === "ap") {
-    return "https://ap.api.fpjs.io";
-  }
-  return "https://api.fpjs.io";
-}
-
-function getServerAPIKey() {
-  const serverAPIKey = process.env.FINGERPRINT_SECRET_API_KEY;
-  if (!serverAPIKey) {
-    throw new Error("FINGERPRINT_SECRET_API_KEY is not set");
-  }
-  return serverAPIKey;
-}
+const OPEN_API_SPEC_URL =
+  "https://fingerprintjs.github.io/fingerprint-pro-server-api-openapi/schemas/fingerprint-server-api.yaml";
 
 /**
  * Basic example of using mcp-openapi-server as a library
@@ -33,8 +19,7 @@ async function main() {
       name: "Fingerprint Server API MCP Server",
       version: "1.0.0",
       apiBaseUrl: getBaseUrl(),
-      openApiSpec:
-        "https://fingerprintjs.github.io/fingerprint-pro-server-api-openapi/schemas/fingerprint-server-api.yaml",
+      openApiSpec: OPEN_API_SPEC_URL,
       specInputMethod: "url",
       headers: {
         "Auth-API-Key": getServerAPIKey(),

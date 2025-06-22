@@ -1,6 +1,6 @@
 # Fingerprint MCP Servers
 
-[MCP Servers](https://modelcontextprotocol.io/introduction) enabling AI assistants to interact with Fingerprint's ([fingerprint.com](https://fingerprint.com)) server-side APIs:
+[MCP Servers](https://modelcontextprotocol.io/introduction) enabling AI assistants (ChatGPT, Cursor, VS Code, etc.) to interact with Fingerprint's ([fingerprint.com](https://fingerprint.com)) server-side APIs:
 
 * [Server API MCP Server](./server-api-mcp-server) — search and update visitor identification events.
 * [Management API MCP Server](./management-api-mcp-server) — manage your Fingerprint workspace (API keys, environments, filtering rule)
@@ -19,20 +19,21 @@ Next, configure your [MCP client](https://modelcontextprotocol.io/clients) (such
 {
   "mcpServers": {
     "fingerprint-server-api": {
-      "command": "npx tsx",
-      "args": ["./src/index.ts"],
+      "command": "npx",
+      "args": [
+        "--yes",
+        "--package",
+        "jurouhlar/fingerprint-mcp-server",
+        "server-api"
+      ],
       "env": {
-        "FINGERPRINT_SERVER_API_KEY": "<YOUR_SECRET_API_KEY>",
-        "FINGERPRINT_SERVER_API_REGION": "<YOUR_REGION>"
+        "FINGERPRINT_SECRET_API_KEY": "YOUR_SECRET_API_KEY",
+        "FINGERPRINT_REGION": "YOUR_REGION"
       }
     }
   }
 }
 ```
 
-
-## Management API MCP Server
-
-TBD
 
 
