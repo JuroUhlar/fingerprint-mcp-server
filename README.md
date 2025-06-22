@@ -5,6 +5,9 @@
 * [Server API MCP Server](./server-api-mcp-server) — search and update visitor identification events.
 * [Management API MCP Server](./management-api-mcp-server) — manage your Fingerprint workspace (API keys, environments, filtering rule)
 
+> [!WARNING]
+> This is not an official Fingerprint integration, just a personal exploration and work in progress. Use at your own risk.
+
 ## Server API MCP Server
 
 This MCP Server enables AI assistants to interact with Fingerprint's [Server API](https://dev.fingerprint.com/reference/server-api).
