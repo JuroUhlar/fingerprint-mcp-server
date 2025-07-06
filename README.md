@@ -79,5 +79,4 @@ Next, configure your [MCP client](https://modelcontextprotocol.io/clients) (e.g.
 
 * "Create 3 new Fingerprint workspace environments named 'dev', 'staging' and 'production' and create a Secret API key for each environment"
 * "List filtering rules for the 'dev' environment"
-* "Create a new filtering rule to block all events from IP address 1.2.3.4"
 * "Create a filtering rule to only accept identification events from mywebsite.com"
