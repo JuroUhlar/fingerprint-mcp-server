@@ -3,7 +3,6 @@
 
 import { OpenAPIServer } from "@ivotoby/openapi-mcp-server";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { removeHeaderParameters } from "./utils/remove-header-params.js";
 
 const BASE_URL = "https://management-api.fpjs.io";
 const OPEN_API_SPEC_URL = "https://management-api.fpjs.io/docs-yaml";
@@ -16,15 +15,6 @@ function getManagementAPIKey() {
   return managementAPIKey;
 }
 
-const getAndProcessOpenApiSpec = async () => {
-  const response = await fetch(OPEN_API_SPEC_URL);
-  const spec = await response.text();
-
-  const modifiedSpec = removeHeaderParameters(spec);
-  console.log(modifiedSpec);
-  return modifiedSpec;
-};
-
 /**
  * Basic example of using mcp-openapi-server as a library
  * This creates a dedicated MCP server for a specific API
@@ -36,10 +26,11 @@ async function main() {
       name: "Fingerprint Server API MCP Server",
       version: "1.0.0",
       apiBaseUrl: BASE_URL,
-      // inlineSpecContent: await getAndProcessOpenApiSpec(),
-      // specInputMethod: "inline",
       openApiSpec: OPEN_API_SPEC_URL,
       specInputMethod: "url",
+      // Alternative undocumented way to pass the spec
+      // inlineSpecContent: "spec as text",
+      // specInputMethod: "inline",
       headers: {
         Authorization: `Bearer ${getManagementAPIKey()}`,
         "X-API-Version": "2024-05-20",
